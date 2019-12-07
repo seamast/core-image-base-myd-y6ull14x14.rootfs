@@ -1,0 +1,5 @@
+#!/bin/sh
+# This prevents g-ir-scanner from writing cache data to /home/blackrose
+export GI_SCANNER_DISABLE_CACHE=1
+
+g-ir-scanner --use-binary-wrapper=/home/blackrose/MYS-6ULX-devel/fsl-release-yocto/myd-y6uly2/tmp/sysroots/myd-y6ull14x14/usr/bin/g-ir-scanner-qemuwrapper --use-ldd-wrapper=/home/blackrose/MYS-6ULX-devel/fsl-release-yocto/myd-y6uly2/tmp/sysroots/myd-y6ull14x14/usr/bin/g-ir-scanner-lddwrapper --add-include-path=/home/blackrose/MYS-6ULX-devel/fsl-release-yocto/myd-y6uly2/tmp/sysroots/myd-y6ull14x14/usr/share/gir-1.0 "$@"

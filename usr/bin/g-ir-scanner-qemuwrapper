@@ -1,0 +1,11 @@
+#!/bin/sh
+# Use a modules directory which doesn't exist so we don't load random things
+# which may then get deleted (or their dependencies) and potentially segfault
+export GIO_MODULE_DIR=/home/blackrose/MYS-6ULX-devel/fsl-release-yocto/myd-y6uly2/tmp/sysroots/myd-y6ull14x14/usr/lib/gio/modules-dummy
+
+PSEUDO_UNLOAD=1 qemu-arm -r 2.6.32  -L /home/blackrose/MYS-6ULX-devel/fsl-release-yocto/myd-y6uly2/tmp/sysroots/myd-y6ull14x14 -E LD_LIBRARY_PATH=$GIR_EXTRA_LIBS_PATH:.libs:/home/blackrose/MYS-6ULX-devel/fsl-release-yocto/myd-y6uly2/tmp/sysroots/myd-y6ull14x14//usr/lib:/home/blackrose/MYS-6ULX-devel/fsl-release-yocto/myd-y6uly2/tmp/sysroots/myd-y6ull14x14//lib  "$@"
+if [ $? -ne 0 ]; then
+    echo "If the above error message is about missing .so libraries, then setting up GIR_EXTRA_LIBS_PATH in the recipe should help."
+    echo "(typically like this: GIR_EXTRA_LIBS_PATH=\"$""{B}/something/.libs\" )"
+    exit 1
+fi
